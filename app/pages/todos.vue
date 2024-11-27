@@ -1,19 +1,16 @@
 <script setup>
-definePageMeta({
-  middleware: 'auth'
-})
-const loading = ref(false)
-const newTodo = ref('')
-const newTodoInput = ref(null)
+const loading = ref(false);
+const newTodo = ref('');
+const newTodoInput = ref(null);
 
-const toast = useToast()
-const { user, clear } = useUserSession()
-const { data: todos, refresh } = await useFetch('/api/todos')
+const toast = useToast();
+const { user, clear } = useUserSession();
+const { data: todos, refresh } = await useFetch('/api/todos');
 
 async function addTodo() {
-  if (!newTodo.value.trim()) return
+  if (!newTodo.value.trim()) return;
 
-  loading.value = true
+  loading.value = true;
 
   try {
     const todo = await $fetch('/api/todos', {
@@ -22,47 +19,47 @@ async function addTodo() {
         title: newTodo.value,
         completed: 0
       }
-    })
-    todos.value.push(todo)
-    await refresh()
-    toast.add({ title: `Todo "${todo.title}" created.` })
-    newTodo.value = ''
+    });
+    todos.value.push(todo);
+    await refresh();
+    toast.add({ title: `Todo "${todo.title}" created.` });
+    newTodo.value = '';
     nextTick(() => {
-      newTodoInput.value?.input?.focus()
-    })
+      newTodoInput.value?.input?.focus();
+    });
   }
   catch (err) {
     if (err.data?.data?.issues) {
-      const title = err.data.data.issues.map(issue => issue.message).join('\n')
-      toast.add({ title, color: 'red' })
+      const title = err.data.data.issues.map(issue => issue.message).join('\n');
+      toast.add({ title, color: 'red' });
     }
   }
-  loading.value = false
+  loading.value = false;
 }
 
 async function toggleTodo(todo) {
-  todo.completed = Number(!todo.completed)
+  todo.completed = Number(!todo.completed);
   await $fetch(`/api/todos/${todo.id}`, {
     method: 'PATCH',
     body: {
       completed: todo.completed
     }
-  })
-  await refresh()
+  });
+  await refresh();
 }
 
 async function deleteTodo(todo) {
-  await $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' })
-  todos.value = todos.value.filter(t => t.id !== todo.id)
-  await refresh()
-  toast.add({ title: `Todo "${todo.title}" deleted.` })
+  await $fetch(`/api/todos/${todo.id}`, { method: 'DELETE' });
+  todos.value = todos.value.filter(t => t.id !== todo.id);
+  await refresh();
+  toast.add({ title: `Todo "${todo.title}" deleted.` });
 }
 
 const items = [[{
   label: 'Logout',
   icon: 'i-heroicons-arrow-left-on-rectangle',
   click: clear
-}]]
+}]];
 </script>
 
 <template>

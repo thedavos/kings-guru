@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Kings League InfoJobs",
+    "slug": "kings-league-infojobs",
+    "country": "España",
+    "city": "Barcelona",
+    "logo": "https://admin.hub.nuxt.com/api/teams/thedavos/projects/kings-guru/production/blob/leagues/shared/kingsleague-logo.jpg",
+    "foundationYear": 2022,
+    "website": "https://kingsleague.pro",
+    "twitterHandle": "@KingsLeague",
+    "instagramHandle": "@kingsleague",
+    "numberOfTeams": 12,
+    "description": "La Kings League es una competición de fútbol 7 fundada por Gerard Piqué que mezcla el fútbol tradicional con reglas innovadoras.",
+    "rules": "Partidos de 40 minutos, tarjetas que otorgan ventajas temporales, penaltis desde el medio campo, y más reglas únicas.",
+    "isActive": true,
+    "isVisible": true
+  },
+  {
+    "name": "Kings League Americas",
+    "slug": "kings-league-americas",
+    "country": "México",
+    "city": "Ciudad de México",
+    "logo": "https://admin.hub.nuxt.com/api/teams/thedavos/projects/kings-guru/production/blob/leagues/shared/kingsleague-logo.jpg",
+    "foundationYear": 2024,
+    "website": "https://kingsleague-americas.pro",
+    "twitterHandle": "@KingsLeagueAM",
+    "instagramHandle": "@kingsleagueamericas",
+    "numberOfTeams": 12,
+    "description": "Expansión de la Kings League en el continente americano, manteniendo el formato innovador y las reglas únicas.",
+    "rules": "Reglas similares a la Kings League original, con algunas adaptaciones para el mercado americano.",
+    "isActive": true,
+    "isVisible": true
+  },
+  {
+    "name": "Kings League Italia",
+    "slug": "kings-league-italia",
+    "country": "Italia",
+    "city": "Milán",
+    "logo": "https://admin.hub.nuxt.com/api/teams/thedavos/projects/kings-guru/production/blob/leagues/shared/kingsleague-logo.jpg",
+    "foundationYear": 2025,
+    "website": "https://kingsleague-italia.pro",
+    "twitterHandle": "@KingsLeagueIT",
+    "instagramHandle": "@kingsleagueitalia",
+    "numberOfTeams": 12,
+    "description": "Expansión de la Kings League en Italia, combinando la pasión italiana por el fútbol con el formato innovador de la Kings League.",
+    "rules": "Reglas basadas en la Kings League original, con algunas modificaciones para adaptarse al estilo de juego italiano.",
+    "isActive": true,
+    "isVisible": true
+  }
+]

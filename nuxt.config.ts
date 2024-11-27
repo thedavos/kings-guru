@@ -1,27 +1,52 @@
+import { fileURLToPath } from 'node:url';
+import { setRoutesMeta } from './route-meta.config';
+import { setAdminPages } from './app/admin/admin.routes';
+
 export default defineNuxtConfig({
+  extends: ['@nuxt/ui-pro'],
+  modules: ['@nuxthub/core', '@nuxt/ui', '@nuxt/fonts', 'nuxt-auth-utils', '@nuxt/eslint'],
+
+  devtools: {
+    enabled: true,
+  },
+
+  ui: {},
+
+  alias: {
+    server: fileURLToPath(new URL('./server/', import.meta.url)),
+    root: fileURLToPath(new URL('./', import.meta.url)),
+  },
+
   future: { compatibilityVersion: 4 },
-  modules: [
-    '@nuxthub/core',
-    '@nuxt/ui',
-    'nuxt-auth-utils',
-    '@nuxt/eslint'
-  ],
+
+  compatibilityDate: '2024-10-20',
+
+  nitro: {
+    experimental: {
+      openAPI: true,
+      tasks: true,
+    },
+  },
+
   hub: {
-    database: true
+    database: true,
+    blob: true,
   },
-  ui: {
-    icons: ['heroicons', 'simple-icons']
+
+  hooks: {
+    'pages:extend'(pages) {
+      setRoutesMeta(pages);
+      setAdminPages(pages);
+    },
   },
+
   // Development config
   eslint: {
     config: {
       stylistic: {
-        quotes: 'single',
-        commaDangle: 'never'
-      }
-    }
+        semi: true,
+        commaDangle: 'always-multiline',
+      },
+    },
   },
-  devtools: {
-    enabled: true
-  }
-})
+});
