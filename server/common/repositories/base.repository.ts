@@ -1,4 +1,4 @@
-import { inject } from 'tsyringe';
+import { inject, registry } from 'tsyringe';
 // import type { InferInsertModel } from 'drizzle-orm';
 import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
 import type { IRepository } from 'server/common/repositories/repository.interface';
@@ -6,6 +6,16 @@ import type { IRepository } from 'server/common/repositories/repository.interfac
 import { DatabaseService } from 'server/database';
 import { LoggerService } from 'server/common/services/logger.service';
 
+@registry([
+  {
+    token: 'LoggerService',
+    useClass: LoggerService,
+  },
+  {
+    token: 'DatabaseService',
+    useClass: DatabaseService,
+  },
+])
 export class BaseRepository<T> implements IRepository<T> {
   protected tableName: string;
   protected table: SQLiteTable;
@@ -14,7 +24,7 @@ export class BaseRepository<T> implements IRepository<T> {
     @inject(DatabaseService) protected readonly db: DatabaseService,
     @inject(LoggerService) protected readonly logger: LoggerService,
   ) {
-    this.logger.setContext(this.constructor.name);
+    // this.logger.setContext(this.constructor.name);
   }
 
   async create(data: Partial<T>): Promise<T> {

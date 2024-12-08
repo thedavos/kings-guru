@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { injectable } from 'tsyringe';
+import { singleton } from 'tsyringe';
 import pino from 'pino';
 
-@injectable()
+@singleton()
 export class LoggerService {
   private logger: pino.Logger;
   private context?: string;

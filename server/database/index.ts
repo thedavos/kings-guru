@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { injectable } from 'tsyringe';
+import { singleton } from 'tsyringe';
 import type { DrizzleD1Database } from 'drizzle-orm/d1';
 import { drizzle } from 'drizzle-orm/d1';
 import type { D1Database } from '@nuxthub/core';
@@ -7,7 +7,7 @@ import * as schema from './schema';
 
 type DrizzleDatabase = DrizzleD1Database<typeof schema>;
 
-@injectable()
+@singleton()
 export class DatabaseService {
   private readonly db: DrizzleDatabase;
 

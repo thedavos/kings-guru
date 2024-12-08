@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { container } from 'tsyringe';
+import { container, delay } from 'tsyringe';
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 export type AppModule = {
@@ -8,6 +8,6 @@ export type AppModule = {
 };
 
 export const registerModule = (appModule: AppModule) => {
-  appModule.services?.forEach(service => container.registerSingleton(service));
-  appModule.repositories?.forEach(repository => container.registerSingleton(repository));
+  appModule.services?.forEach(service => container.registerSingleton(service.token, delay(() => service.provide)));
+  appModule.repositories?.forEach(repository => container.registerSingleton(repository.token, delay(() => repository.provide)));
 };

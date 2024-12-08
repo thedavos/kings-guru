@@ -3,6 +3,12 @@ import { LeaguesService } from './leagues.service';
 
 export default {
   imports: [],
-  services: [LeaguesService],
-  repositories: [LeaguesRepository],
+  services: [{
+    token: 'LeaguesService',
+    provide: LeaguesService,
+  }],
+  repositories: [{
+    token: 'LeaguesRepository',
+    provide: LeaguesRepository,
+  }],
 };
