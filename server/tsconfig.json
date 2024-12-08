@@ -4,5 +4,6 @@
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-  }
+  },
+  "files": ["./types/global.d.ts"]
 }

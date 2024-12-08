@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { fileURLToPath } from 'node:url';
 import { setRoutesMeta } from './route-meta.config';
 import { setAdminPages } from './app/admin/admin.routes';
@@ -26,6 +27,18 @@ export default defineNuxtConfig({
       openAPI: true,
       tasks: true,
     },
+    plugins: [
+      'server/plugins/container',
+    ],
+    esbuild: {
+      options: {
+        tsconfigRaw: {
+          compilerOptions: {
+            experimentalDecorators: true,
+          },
+        },
+      },
+    },
   },
 
   hub: {
@@ -37,6 +50,9 @@ export default defineNuxtConfig({
     'pages:extend'(pages) {
       setRoutesMeta(pages);
       setAdminPages(pages);
+    },
+    'nitro:build:before'(nitro) {
+      nitro.options.moduleSideEffects.push('reflect-metadata');
     },
   },
 
