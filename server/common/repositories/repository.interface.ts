@@ -1,9 +1,5 @@
-import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
-// import type { QueryOptions } from '../types/query.types';
-// import type { IEntity } from './entity.interface';
-
-export interface IRepository<T extends SQLiteTable> {
-  // create(data: Partial<T>): Promise<T>;
+export interface IRepository<T> {
+  create(data: Partial<T>): Promise<T>;
   // findOne?(id: number): Promise<T | null>;
   // findOneBy?(key: keyof T, value: never): Promise<T | null>;
   // find?(options?: QueryOptions): Promise<T[]>;

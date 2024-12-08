@@ -1,12 +1,12 @@
 import { inject } from 'tsyringe';
 // import type { InferInsertModel } from 'drizzle-orm';
 import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
-// import type { IRepository } from 'server/common/repositories/repository.interface';
+import type { IRepository } from 'server/common/repositories/repository.interface';
 // import type { KGError } from 'server/common/types/errors.types';
 import { DatabaseService } from 'server/database';
 import { LoggerService } from 'server/common/services/logger.service';
 
-export class BaseRepository<T> {
+export class BaseRepository<T> implements IRepository<T> {
   protected tableName: string;
   protected table: SQLiteTable;
 
