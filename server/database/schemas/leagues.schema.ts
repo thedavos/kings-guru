@@ -17,7 +17,6 @@ export const leagues = sqliteTable('leagues', {
   description: text('description'),
   rules: text('rules'),
   isActive: integer('is_active', { mode: 'boolean' }).notNull().default(true),
-  isVisible: integer('is_active', { mode: 'boolean' }).notNull().default(true),
   ...commonFields,
 });
 

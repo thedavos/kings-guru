@@ -6,46 +6,6 @@ const route = useRoute();
 const appConfig = useAppConfig();
 const { isHelpSlideoverOpen } = useDashboard();
 
-const links = [{
-  id: 'home',
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/',
-  tooltip: {
-    text: 'Home',
-    shortcuts: ['G', 'H'],
-  },
-}, {
-  id: 'players',
-  label: 'Jugadores',
-  icon: 'i-heroicons-user-group',
-  to: '/players',
-  tooltip: {
-    text: 'Jugadores',
-    shortcuts: ['G', 'U'],
-  },
-}, {
-  id: 'settings',
-  label: 'Settings',
-  to: '/settings',
-  icon: 'i-heroicons-cog-8-tooth',
-  children: [{
-    label: 'General',
-    to: '/settings',
-    exact: true,
-  }, {
-    label: 'Members',
-    to: '/settings/members',
-  }, {
-    label: 'Notifications',
-    to: '/settings/notifications',
-  }],
-  tooltip: {
-    text: 'Settings',
-    shortcuts: ['G', 'S'],
-  },
-}];
-
 const footerLinks = [{
   label: 'Invite people',
   icon: 'i-heroicons-plus',
@@ -109,7 +69,7 @@ export default {
         <UDivider />
 
         <UDashboardSidebarLinks
-          :links="[{ label: 'Colors', draggable: true, children: colors }]"
+          :links="[{ label: 'Ligas', draggable: true, children: colors }]"
           @update:links="colors => defaultColors = colors"
         />
 

@@ -9,8 +9,14 @@ export const items: DropdownItem[][] = [
   }], [{
     label: 'Nuevo jugador',
     icon: 'i-heroicons-user-plus',
-    shortcuts: ['P'],
-    to: '/players/new',
+    shortcuts: ['J'],
+    to: 'admin/players/new',
+  },
+  {
+    label: 'Nueva liga',
+    icon: 'i-heroicons-globe-alt',
+    shortcuts: ['L'],
+    to: 'admin/leagues/new',
   }, {
     label: 'Duplicate',
     icon: 'i-heroicons-document-duplicate-20-solid',

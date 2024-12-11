@@ -1,3 +1,9 @@
+import 'reflect-metadata';
+import { container } from 'tsyringe';
+import { LeaguesService } from 'server/leagues/leagues.service';
+
 export default eventHandler(async () => {
-  return await useDB().select().from(tables.leagues).all();
+  const leagueService = container.resolve<LeaguesService>(LeaguesService);
+
+  return await leagueService.getLeagues();
 });

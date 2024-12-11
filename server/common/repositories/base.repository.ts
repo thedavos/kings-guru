@@ -1,31 +1,17 @@
-import { inject, registry } from 'tsyringe';
-// import type { InferInsertModel } from 'drizzle-orm';
 import type { SQLiteTable } from 'drizzle-orm/sqlite-core';
+import type { SQL } from 'drizzle-orm';
 import type { IRepository } from 'server/common/repositories/repository.interface';
-// import type { KGError } from 'server/common/types/errors.types';
-import { DatabaseService } from 'server/database';
-import { LoggerService } from 'server/common/services/logger.service';
+import type { DatabaseService } from 'server/database';
+import type { LoggerService } from 'server/common/services/logger.service';
 
-@registry([
-  {
-    token: 'LoggerService',
-    useClass: LoggerService,
-  },
-  {
-    token: 'DatabaseService',
-    useClass: DatabaseService,
-  },
-])
 export class BaseRepository<T> implements IRepository<T> {
   protected tableName: string;
   protected table: SQLiteTable;
 
   constructor(
-    @inject(DatabaseService) protected readonly db: DatabaseService,
-    @inject(LoggerService) protected readonly logger: LoggerService,
-  ) {
-    // this.logger.setContext(this.constructor.name);
-  }
+    protected readonly db: DatabaseService,
+    protected readonly logger: LoggerService,
+  ) {}
 
   async create(data: Partial<T>): Promise<T> {
     this.logger.debug(`Creating in ${this.tableName}`, { data });
@@ -35,21 +21,25 @@ export class BaseRepository<T> implements IRepository<T> {
     return recordCreated as T;
   }
 
-  // async create(data) {
-  //   try {
-  //     this.logger.debug(`Creating ${this.tableName}`, { data });
-  //
-  //     const created = (await this.db.instance.insert(this.table).values(data).returning())[0];
-  //
-  //     return created as InferInsertModel<T>;
-  //   }
-  //   catch (e) {
-  //     const error = e as KGError;
-  //     this.logger.error(`Error creating ${this.tableName}`, error.stack);
-  //     throw error;
-  //   }
-  // }
-  //
+  async findAll(query: SQL | undefined = undefined): Promise<T[]> {
+    this.logger.debug(`Searching in ${this.tableName}`);
+
+    const records = await this.db.value.select().from(this.table).where(query).all();
+
+    return records as T[];
+  }
+
+  async findManyWith(relation: string): Promise<T[]> {
+    const query = this.db.value.query;
+    const records = await query[this.tableName as keyof typeof query].findMany({
+      with: {
+        [relation]: true,
+      },
+    });
+
+    return records as T[];
+  }
+
   // async findOne(id: number): Promise<T | null> {
   //   try {
   //     const result = await this.db.instance

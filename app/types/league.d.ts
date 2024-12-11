@@ -1,6 +1,4 @@
-import type { League } from 'root/types/leagues';
-
-export class LeagueModel implements League {
+export type League = {
   id: number;
   uuid: string;
   name: string;
@@ -18,10 +16,5 @@ export class LeagueModel implements League {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-
-  constructor(league: League) {
-    Object.assign(this, league);
-  }
-
   isVisible: boolean;
-}
+};

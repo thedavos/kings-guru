@@ -1,5 +1,6 @@
 export { uuid, commonFields } from './schemas/common.schema';
 export { leagues } from './schemas/leagues.schema';
+export { imagesRelations, leaguesRelations } from './schemas/relations.schema';
 
 // const PlayerStatus = {
 //   ACTIVE: 'active',

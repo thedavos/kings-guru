@@ -13,4 +13,8 @@ export class LeaguesService {
   createLeague(data: CreateLeagueDto): Promise<League> {
     return this.leaguesRepository.create(data);
   }
+
+  getLeagues(): Promise<League[]> {
+    return this.leaguesRepository.findAll();
+  }
 }

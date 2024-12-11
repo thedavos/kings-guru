@@ -16,7 +16,7 @@
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/ui": "^2.19.2",
     "@nuxt/ui-pro": "^1.5.0",
-    "@nuxthub/core": "^0.7.33",
+    "@nuxthub/core": "^0.7.37",
     "drizzle-kit": "^0.26.2",
     "drizzle-orm": "0.35.1",
     "h3-zod": "^0.5.3",
@@ -32,9 +32,9 @@
     "@nuxt/eslint-config": "^0.6.0",
     "@types/eslint-config-prettier": "^6.11.3",
     "eslint": "^9.12.0",
+    "pino-pretty": "^13.0.0",
     "typescript": "5.6.3",
-    "wrangler": "^3.80.5",
-    "pino-pretty": "^13.0.0"
+    "wrangler": "^3.80.5"
   },
   "packageManager": "pnpm@9.7.0"
 }

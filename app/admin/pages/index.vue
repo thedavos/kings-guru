@@ -8,7 +8,7 @@ definePageMeta({
 
 <script lang="ts">
 export default {
-  name: 'HomeAdmin',
+  name: 'AdminHome',
 };
 </script>
 
@@ -28,6 +28,8 @@ export default {
           </UDropdown>
         </template>
       </UDashboardNavbar>
+
+      <!--      <UDashboardPanelContent /> -->
     </UDashboardPanel>
   </UDashboardPage>
 </template>

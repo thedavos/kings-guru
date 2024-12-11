@@ -1,7 +1,7 @@
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { commonFields, uuid } from './common.schema';
 
-export const imagesSchema = sqliteTable('imagesSchema', {
+export const imagesSchema = sqliteTable('images', {
   id: integer('id').primaryKey(),
   uuid: uuid().unique().notNull(),
   url: text('url').notNull(),
@@ -16,6 +16,7 @@ export const imagesSchema = sqliteTable('imagesSchema', {
   altText: text('alt_text').default(''),
   createdBy: text('created_by').default(''),
   tags: text('tags', { mode: 'json' }).default([]),
+  isActive: integer('is_active', { mode: 'boolean' }).notNull().default(false),
   ...commonFields,
 });
 
